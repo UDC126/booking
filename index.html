@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Udumalpet Call Driver</title>
+<style>
+:root{--blue:#123b72;--blue2:#1d5ba8;--gold:#f4b942;--bg:#f3f6fb;--ink:#172033;--muted:#667085;--line:#dce3ee;--green:#13834a;--red:#b42318}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg)}header{background:linear-gradient(125deg,var(--blue),var(--blue2));color:white;padding:24px 16px 26px}.wrap{max-width:1120px;margin:auto}.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:14px;background:white;color:var(--blue);display:grid;place-items:center;font-size:26px}h1{font-size:clamp(24px,4vw,36px);margin:0}header p{margin:8px 0 0;color:#e6efff}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.nav button{border:1px solid #ffffff55;background:#ffffff12;color:white;padding:10px 14px;border-radius:10px;cursor:pointer}.nav button.active{background:white;color:var(--blue);font-weight:700}main{max-width:1120px;margin:22px auto;padding:0 14px 42px}.panel{display:none}.panel.active{display:block}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 5px 18px #19365d0a}.wide{grid-column:1/-1}h2{font-size:22px;margin:0 0 8px}h3{font-size:17px;margin:0 0 12px}.muted{color:var(--muted);font-size:14px}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}label{font-size:13px;font-weight:700;color:#344054}input,select,textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;background:white;font:inherit;min-width:0}textarea{min-height:80px;resize:vertical}.btn{border:0;background:var(--blue2);color:white;font-weight:700;padding:12px 16px;border-radius:10px;cursor:pointer}.btn:hover{filter:brightness(1.08)}.btn.secondary{background:#e8eef8;color:var(--blue)}.btn.danger{background:var(--red)}.btn:disabled{opacity:.55;cursor:not-allowed}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.fare{background:#eff6ff;border:1px solid #c8dcfb;padding:16px;border-radius:12px;margin-top:14px}.amount{font-size:30px;font-weight:800;color:var(--blue)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:16px}.stat strong{display:block;font-size:26px;color:var(--blue)}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#f8fafc;color:#475467}.pill{display:inline-block;padding:4px 8px;border-radius:99px;background:#eef2f6;font-size:12px;font-weight:700}.notice{padding:12px;background:#fff8e6;border:1px solid #f5d98d;border-radius:10px;font-size:13px;line-height:1.5}.success{padding:12px;background:#e9f8ef;border:1px solid #b7e4c7;border-radius:10px;font-size:14px}.error{padding:12px;background:#fff0ef;border:1px solid #ffc9c4;border-radius:10px;font-size:14px}.empty{padding:22px;text-align:center;color:var(--muted)}footer{text-align:center;padding:18px;color:var(--muted);font-size:13px}.small{font-size:12px;color:var(--muted)}.hidden{display:none!important}.topline{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.inline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.status{min-width:130px}.driver-item{border-bottom:1px solid var(--line);padding:12px 0}.link{color:var(--blue2)}@media(max-width:700px){.grid,.fields{grid-template-columns:1fr}.wide,.field.full{grid-column:auto}.stats{grid-template-columns:1fr 1fr}.card{padding:16px}.nav button{flex:1}.tablewrap table{min-width:820px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="brand"><div class="logo">🚘</div><div><h1>Udumalpet Call Driver</h1><p>Reliable drivers for your own car · Local & outstation trips</p></div></div>
+ <div class="nav"><button class="active" data-tab="book">Book a Driver</button><button data-tab="admin">Admin Dashboard</button><button data-tab="drivers">Driver Management</button></div>
+</div></header>
+<main>
+<section id="book" class="panel active">
+ <div class="grid">
+  <div class="card">
+   <h2>Book a driver</h2><p class="muted">Submit your trip details. Our team will review the request and confirm driver availability.</p>
+   <form id="bookingForm"><div class="fields">
+    <div class="field"><label for="customer">Customer name *</label><input id="customer" maxlength="100" required placeholder="Your full name"></div>
+    <div class="field"><label for="phone">Mobile number *</label><input id="phone" maxlength="20" required type="tel" pattern="[0-9+() -]{8,20}" placeholder="Your phone number"></div>
+    <div class="field full"><label for="pickup">Pickup location *</label><input id="pickup" maxlength="250" required placeholder="Street / area / landmark"></div>
+    <div class="field full"><label for="drop">Drop location</label><input id="drop" maxlength="250" placeholder="Destination (optional)"></div>
+    <div class="field"><label for="date">Trip date *</label><input id="date" type="date" required></div>
+    <div class="field"><label for="time">Pickup time *</label><input id="time" type="time" required></div>
+    <div class="field"><label for="hours">Hours *</label><input id="hours" type="number" min="1" max="240" step="1" value="2" required></div>
+    <div class="field"><label for="km">Kilometres *</label><input id="km" type="number" min="0" max="10000" step="1" value="50" required></div>
+    <div class="field full"><label for="notes">Additional instructions</label><textarea id="notes" maxlength="1000" placeholder="Car type, return trip, special requests…"></textarea></div>
+   </div>
+   <div class="fare"><div class="muted">Estimated fare · ₹100/hour + ₹2/km · Minimum ₹300</div><div class="amount" id="fareAmount">₹340</div><div class="small" id="fareBreakdown">Hours ₹300 + distance ₹40</div></div>
+   <div class="actions"><button class="btn" id="submitBooking" type="submit">Submit booking request</button><button class="btn secondary" id="whatsappBtn" type="button">Send via WhatsApp</button></div>
+   <p class="small">Fare is an estimate. Final fare and availability are confirmed by the admin.</p>
+   <div id="bookingMessage" role="status" aria-live="polite"></div>
+   </form>
+  </div>
+  <div class="card">
+   <h2>How booking works</h2><p>1. Enter your trip details.</p><p>2. Check the estimated fare.</p><p>3. Submit the booking request.</p><p>4. Our admin assigns an available driver and contacts you.</p>
+   <div class="notice"><strong>Customer privacy:</strong> booking information is submitted to the configured database. Only authorized admin accounts can view booking records. Use the SQL setup file and follow the publishing guide before taking real bookings.</div>
+   <p><strong>Need help?</strong></p><a class="link" id="helpWhatsApp" target="_blank" rel="noopener">Contact us on WhatsApp</a>
+  </div>
+ </div>
+</section>
+<section id="admin" class="panel">
+ <div class="grid">
+  <div class="card wide">
+   <div class="topline"><div><h2>Admin dashboard</h2><p class="muted">Secure sign-in required to view and manage bookings.</p></div><button id="logoutBtn" class="btn secondary hidden" type="button">Sign out</button></div>
+   <div id="configNotice" class="notice">Setup required: add your Supabase project URL and public anon key in the configuration section of index.html. See README.txt.</div>
+   <div id="loginBox" class="hidden"><form id="loginForm"><div class="fields"><div class="field"><label for="adminEmail">Admin email</label><input id="adminEmail" type="email" autocomplete="username" required></div><div class="field"><label for="adminPassword">Password</label><input id="adminPassword" type="password" autocomplete="current-password" required></div></div><div class="actions"><button class="btn" id="loginBtn" type="submit">Sign in</button></div></form></div>
+   <div id="adminMessage" aria-live="polite"></div>
+  </div>
+  <div id="adminContent" class="hidden wide">
+   <div class="stats"><div class="stat"><span class="muted">Total bookings</span><strong id="totalStat">0</strong></div><div class="stat"><span class="muted">New requests</span><strong id="newStat">0</strong></div><div class="stat"><span class="muted">Available drivers</span><strong id="availableStat">0</strong></div></div>
+   <div class="card"><div class="topline"><div><h3>Booking requests</h3><p class="muted">Assign a driver and update status. Refresh to reload the latest records.</p></div><button class="btn secondary" id="refreshBtn" type="button">Refresh</button></div><div class="tablewrap" id="bookingsTable"></div></div>
+  </div>
+ </div>
+</section>
+<section id="drivers" class="panel">
+ <div class="grid">
+  <div class="card wide"><h2>Driver management</h2><p class="muted">Only signed-in authorized admins can add or edit drivers.</p><div id="driversAccessMessage" class="notice">Sign in from the Admin Dashboard first. Driver data is shared online after Supabase setup.</div></div>
+  <div id="driverContent" class="hidden card"><h3>Add a driver</h3><form id="driverForm"><div class="fields">
+    <div class="field full"><label for="driverName">Driver name *</label><input id="driverName" maxlength="100" required placeholder="Driver full name"></div>
+    <div class="field full"><label for="driverPhone">Mobile number *</label><input id="driverPhone" maxlength="20" required type="tel" placeholder="Driver phone"></div>
+    <div class="field full"><label for="driverStatus">Availability</label><select id="driverStatus"><option>Available</option><option>Busy</option><option>Inactive</option></select></div>
+   </div><div class="actions"><button class="btn" type="submit">Add driver</button></div></form><div id="driverMessage"></div></div>
+  <div id="driverRosterCard" class="hidden card"><h3>Driver roster</h3><div id="driversList"></div></div>
+ </div>
+</section>
+</main><footer>Udumalpet Call Driver · Driver booking for your own car</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(() => {
+ // SETUP: replace these two values with your Supabase project's URL and anon/public key.
+ // Never put a service_role key in this public website.
+ const SUPABASE_URL = "https://csuhydovkijxkhejzhhw.supabase.co";
+ const SUPABASE_ANON_KEY = "sb_publishable_tmGxyYG4vbgf7iqE13Z1Zg_NpfQ11A_";
+ const WHATSAPP = "919994732496";
+ const CONFIGURED = SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("PASTE_") && !SUPABASE_ANON_KEY.includes("PASTE_");
+ const $ = id => document.getElementById(id);
+ let db = null, session = null, adminAllowed = false, drivers = [], bookings = [];
+ const money = n => "₹" + Math.round(Number(n)||0).toLocaleString("en-IN");
+ const esc = s => String(s ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ const msg = (id,text,type="notice") => { $(id).className=type; $(id).textContent=text; $(id).classList.remove("hidden"); };
+ if (CONFIGURED && window.supabase) db = window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+ $("helpWhatsApp").href="https://wa.me/"+WHATSAPP;
+ document.querySelectorAll("[data-tab]").forEach(btn=>btn.addEventListener("click",()=>showTab(btn.dataset.tab)));
+ function showTab(id){document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",p.id===id));document.querySelectorAll("[data-tab]").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));if(id==="admin")updateAuthUI();if(id==="drivers")renderDriverAccess();window.scrollTo({top:0,behavior:"smooth"});}
+ function fare(){const h = Math.max(0, Math.floor(Number($("hours").value) || 0)),km=Math.max(0,Number($("km").value)||0),hourly=h*100,distance=km*2,total=Math.max(300,hourly+distance);$("fareAmount").textContent=money(total);$("fareBreakdown").textContent=`Hours ${money(hourly)} + distance ${money(distance)}${hourly+distance<300?" · ₹300 minimum applied":""}`;return {h,km,total};}
+ ["hours","km"].forEach(id=>$(id).addEventListener("input",fare));if (!Number.isInteger(Number($("hours").value))) {
+  alert("Please enter whole hours only (1, 2, 3...).");
+  return;
+}
+ const today=new Date();$("date").min=`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,"0")}-${String(today.getDate()).padStart(2,"0")}`;$("date").value=$("date").min;
+ function bookingFromForm(){const f=fare();return {customer_name:$("customer").value.trim(),customer_phone:$("phone").value.trim(),pickup_location:$("pickup").value.trim(),drop_location:$("drop").value.trim()||null,trip_date:$("date").value,pickup_time:$("time").value,hours:f.h,kilometres:f.km,estimated_fare:f.total,notes:$("notes").value.trim()||null};}
+ function bookingMessage(b){return `*Driver Booking Request - Udumalpet Call Driver*%0AName: ${encodeURIComponent(b.customer_name)}%0APhone: ${encodeURIComponent(b.customer_phone)}%0APickup: ${encodeURIComponent(b.pickup_location)}%0ADrop: ${encodeURIComponent(b.drop_location||"Not specified")}%0ADate/time: ${encodeURIComponent(b.trip_date+" "+b.pickup_time)}%0AHours: ${b.hours}%0AKilometres: ${b.kilometres}%0AEstimated fare: ${encodeURIComponent(money(b.estimated_fare))}%0ANotes: ${encodeURIComponent(b.notes||"None")}`;}
+ $("bookingForm").addEventListener("submit",async e=>{e.preventDefault();if(!db){msg("bookingMessage","The website is not connected to its booking database yet. Complete the Supabase setup in README.txt, or send the details through WhatsApp.","error");return;}const b=bookingFromForm();const btn=$("submitBooking");btn.disabled=true;btn.textContent="Submitting…";try{const {error}=await db.from("bookings").insert(b);if(error)throw error;msg("bookingMessage","Your booking request has been submitted. Our admin will contact you to confirm the driver.","success");$("bookingForm").reset();$("date").value=$("date").min;fare();}catch(err){msg("bookingMessage","Booking could not be submitted: "+(err.message||"Please try WhatsApp instead."),"error");}finally{btn.disabled=false;btn.textContent="Submit booking request";}});
+ $("whatsappBtn").addEventListener("click",()=>{if(!$("bookingForm").reportValidity())return;const b=bookingFromForm();window.open("https://wa.me/"+WHATSAPP+"?text="+bookingMessage(b),"_blank","noopener");});
+ $("loginForm").addEventListener("submit",async e=>{e.preventDefault();if(!db)return;const btn=$("loginBtn");btn.disabled=true;try{const {error}=await db.auth.signInWithPassword({email:$("adminEmail").value.trim(),password:$("adminPassword").value});if(error)throw error;await checkSession();}catch(err){msg("adminMessage",err.message||"Sign-in failed.","error");}finally{btn.disabled=false;}});
+ $("logoutBtn").addEventListener("click",async()=>{if(db)await db.auth.signOut();session=null;adminAllowed=false;updateAuthUI();});
+ $("refreshBtn").addEventListener("click",loadAdminData);
+ async function checkSession(){if(!db){updateAuthUI();return;}const {data}=await db.auth.getSession();session=data.session;adminAllowed=false;if(session){const {data:rows,error}=await db.from("admin_users").select("user_id").eq("user_id",session.user.id).limit(1);if(!error&&rows&&rows.length)adminAllowed=true;else if(error)msg("adminMessage","Signed in, but admin access could not be verified. Check the SQL policies and admin_users setup.","error");}updateAuthUI();if(adminAllowed)await loadAdminData();}
+ function updateAuthUI(){if(!CONFIGURED){$("configNotice").classList.remove("hidden");$("loginBox").classList.add("hidden");$("adminContent").classList.add("hidden");$("logoutBtn").classList.add("hidden");return;}$("configNotice").classList.add("hidden");if(!session){$("loginBox").classList.remove("hidden");$("adminContent").classList.add("hidden");$("logoutBtn").classList.add("hidden");}else if(!adminAllowed){$("loginBox").classList.add("hidden");$("adminContent").classList.add("hidden");$("logoutBtn").classList.remove("hidden");if(!$("adminMessage").textContent)msg("adminMessage","Your account is signed in but is not authorized as an admin. Add its user UUID to admin_users using the SQL instructions.","error");}else{$("loginBox").classList.add("hidden");$("adminContent").classList.remove("hidden");$("logoutBtn").classList.remove("hidden");$("adminMessage").classList.add("hidden");}}
+ async function loadAdminData(){if(!db||!adminAllowed)return;try{const [br,dr]=await Promise.all([db.from("bookings").select("*").order("created_at",{ascending:false}).limit(500),db.from("drivers").select("*").order("created_at",{ascending:false})]);if(br.error)throw br.error;if(dr.error)throw dr.error;bookings=br.data||[];drivers=dr.data||[];renderBookings();renderDrivers();}catch(err){msg("adminMessage","Could not load admin data: "+err.message,"error");}}
+ function renderBookings(){$("totalStat").textContent=bookings.length;$("newStat").textContent=bookings.filter(b=>b.status==="New").length;$("availableStat").textContent=drivers.filter(d=>d.availability==="Available").length;if(!bookings.length){$("bookingsTable").innerHTML='<div class="empty">No booking requests yet.</div>';return;}$("bookingsTable").innerHTML=`<table><thead><tr><th>Booking / time</th><th>Customer & trip</th><th>Fare</th><th>Assign driver</th><th>Status</th><th>Actions</th></tr></thead><tbody>${bookings.map(b=>`<tr><td><strong>${esc(b.id.slice(0,8))}</strong><div class="small">${esc(b.trip_date)} ${esc(b.pickup_time)}</div><div class="small">${esc(new Date(b.created_at).toLocaleString())}</div></td><td><strong>${esc(b.customer_name)}</strong><div>${esc(b.customer_phone)}</div><div class="small">${esc(b.pickup_location)} → ${esc(b.drop_location||"—")}</div><div class="small">${esc(b.hours)} hrs · ${esc(b.kilometres)} km</div></td><td><strong>${money(b.estimated_fare)}</strong></td><td><select class="status" data-assign="${b.id}"><option value="">Unassigned</option>${drivers.map(d=>`<option value="${d.id}" ${b.driver_id===d.id?"selected":""}>${esc(d.name)} (${esc(d.availability)})</option>`).join("")}</select></td><td><select class="status" data-status="${b.id}">${["New","Assigned","In Progress","Completed","Cancelled"].map(s=>`<option ${b.status===s?"selected":""}>${s}</option>`).join("")}</select></td><td><button class="btn secondary" data-wa="${b.id}">WhatsApp</button></td></tr>`).join("")}</tbody></table>`;
+ document.querySelectorAll("[data-assign]").forEach(s=>s.onchange=async()=>{const b=bookings.find(x=>x.id===s.dataset.assign);const driverId=s.value||null;const nextStatus=driverId&&b.status==="New"?"Assigned":b.status;const {error}=await db.from("bookings").update({driver_id:driverId,status:nextStatus}).eq("id",b.id);if(error)alert("Assignment failed: "+error.message);else await loadAdminData();});
+ document.querySelectorAll("[data-status]").forEach(s=>s.onchange=async()=>{const {error}=await db.from("bookings").update({status:s.value}).eq("id",s.dataset.status);if(error)alert("Status update failed: "+error.message);else await loadAdminData();});
+ document.querySelectorAll("[data-wa]").forEach(btn=>btn.onclick=()=>{const b=bookings.find(x=>x.id===btn.dataset.wa),d=drivers.find(x=>x.id===b.driver_id);const text=`Booking ${b.id.slice(0,8)}\nCustomer: ${b.customer_name}\nPhone: ${b.customer_phone}\nTrip: ${b.pickup_location} to ${b.drop_location||"not specified"}\nDate/time: ${b.trip_date} ${b.pickup_time}\nFare: ${money(b.estimated_fare)}\nDriver: ${d?d.name+" - "+d.phone:"Not assigned"}\nStatus: ${b.status}`;window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(text),"_blank","noopener");});}
+ $("driverForm").addEventListener("submit",async e=>{e.preventDefault();if(!db||!adminAllowed)return;const {error}=await db.from("drivers").insert({name:$("driverName").value.trim(),phone:$("driverPhone").value.trim(),availability:$("driverStatus").value});if(error){msg("driverMessage","Could not add driver: "+error.message,"error");return;}msg("driverMessage","Driver added successfully.","success");$("driverForm").reset();await loadAdminData();});
+ function renderDriverAccess(){if(!db){$("driversAccessMessage").textContent="Setup required: configure Supabase URL and anon key first.";return;}if(!adminAllowed){$("driversAccessMessage").textContent="Sign in with an authorized admin account from the Admin Dashboard first.";return;}$("driversAccessMessage").classList.add("hidden");$("driverContent").classList.remove("hidden");$("driverRosterCard").classList.remove("hidden");renderDrivers();}
+ function renderDrivers(){if(!adminAllowed)return;$("driversList").innerHTML=drivers.length?drivers.map(d=>`<div class="driver-item"><strong>${esc(d.name)}</strong><div class="muted">${esc(d.phone)} · ${esc(d.availability)}</div><div class="actions"><button class="btn secondary" data-driver-status="${d.id}">Cycle availability</button><button class="btn danger" data-driver-delete="${d.id}">Delete</button></div></div>`).join(""):'<div class="empty">No drivers added yet.</div>';document.querySelectorAll("[data-driver-status]").forEach(btn=>btn.onclick=async()=>{const d=drivers.find(x=>x.id===btn.dataset.driverStatus),states=["Available","Busy","Inactive"],next=states[(states.indexOf(d.availability)+1)%states.length];const {error}=await db.from("drivers").update({availability:next}).eq("id",d.id);if(error)alert(error.message);else await loadAdminData();});document.querySelectorAll("[data-driver-delete]").forEach(btn=>btn.onclick=async()=>{if(!confirm("Delete this driver from the roster? Existing booking history will remain."))return;const {error}=await db.from("drivers").delete().eq("id",btn.dataset.driverDelete);if(error)alert(error.message);else await loadAdminData();});}
+ if(db){db.auth.onAuthStateChange(()=>{setTimeout(()=>checkSession(),0);});checkSession();}else{updateAuthUI();}
+ fare();
+})();
+</script>
+</body></html>

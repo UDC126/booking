@@ -20,7 +20,7 @@
    <h2>Book a driver</h2><p class="muted">Submit your trip details. Our team will review the request and confirm driver availability.</p>
    <form id="bookingForm"><div class="fields">
     <div class="field"><label for="customer">Customer name *</label><input id="customer" maxlength="100" required placeholder="Your full name"></div>
-    <div class="field"><label for="phone">Mobile number *</label><input id="phone" maxlength="20" required type="tel" pattern="[0-9+() -]{8,20}" placeholder="Your phone number"></div>
+    <div class="field"><label for="phone">Mobile number *</label><input id="phone" minlength="10" maxlength="12" required type="tel" pattern="[0-9+() -]{8,20}" placeholder="Your phone number"></div>
     <div class="field full"><label for="pickup">Pickup location *</label><input id="pickup" maxlength="250" required placeholder="Street / area / landmark"></div>
     <div class="field full"><label for="drop">Drop location</label><input id="drop" maxlength="250" placeholder="Destination (optional)"></div>
     <div class="field"><label for="date">Trip date *</label><input id="date" type="date" required></div>
@@ -30,7 +30,7 @@
     <div class="field full"><label for="notes">Additional instructions</label><textarea id="notes" maxlength="1000" placeholder="Car type, return trip, special requests…"></textarea></div>
    </div>
    <div class="fare"><div class="muted">Estimated fare · ₹100/hour + ₹2/km · Minimum ₹300</div><div class="amount" id="fareAmount">₹340</div><div class="small" id="fareBreakdown">Hours ₹300 + distance ₹40</div></div>
-   <div class="actions"><button class="btn" id="submitBooking" type="submit">Submit booking request</button><button class="btn secondary" id="whatsappBtn" type="button">Book via WhatsApp</button></div>
+   <div class="actions"><button class="btn" id="whatsappBtn" type="button">Book via WhatsApp</button><button class="btn secondary" id="submitBooking" type="submit">Submit booking request</button></div>
    <p class="small">Fare is an estimate. Final fare and availability are confirmed by the admin.</p>
    <div id="bookingMessage" role="status" aria-live="polite"></div>
    </form>
